@@ -3,7 +3,7 @@
   function updateGridState(state) {
     let morePages = false,
       prevPages = false;
-    const peoplePerPage = 10;
+    const peoplePerPage = 20;
     const numPages = Math.ceil(state.people.length / peoplePerPage);
     const pages = [];
     const from = Math.max(1, state.grid.page - 3);
@@ -47,7 +47,7 @@
           return updateGridState(
             Object.assign({}, state, {
             people: [
-              ...state,
+              ...state.people,
               data
             ]}));
         case 'selectPage':

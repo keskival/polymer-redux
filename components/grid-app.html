@@ -20,22 +20,27 @@
     </iron-localstorage>
     <paper-card heading="Add a person" class="col-xs-12 row">
       <div>
-        <div class="col-xs-12 col-md-4">
-          <paper-input label="Name"></paper-input>
-        </div>
-        <!-- Should be "Sex", not "Gender" -->
-        <div class="col-xs-12 col-md-4">
-          <paper-dropdown-menu label="Gender">
-            <paper-menu class="dropdown-content">
-              <paper-item>Male</paper-item>
-              <paper-item>Female</paper-item>
-              <paper-item>Other</paper-item>
-            </paper-menu>
-          </paper-dropdown-menu>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <paper-button class="col-xs-12 col-md-4" style="font-size: 24pt;">+</paper-button>
-        </div>
+        <form id="addPersonForm">
+          <div class="col-xs-12 col-md-3">
+            <paper-input label="Name" id="addPersonName" minlength="1" required></paper-input>
+          </div>
+          <!-- Should be "Sex", not "Gender" -->
+          <div class="col-xs-12 col-md-3">
+            <paper-dropdown-menu label="Gender" id="addPersonSex" required>
+              <paper-menu class="dropdown-content">
+                <paper-item>Male</paper-item>
+                <paper-item>Female</paper-item>
+                <paper-item>Other / Don't want to answer</paper-item>
+              </paper-menu>
+            </paper-dropdown-menu>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <paper-input label="Age" id="addPersonAge" minlength="1" type="number" required></paper-input>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <paper-button class="col-xs-12 col-md-4" style="font-size: 24pt;" on-tap="addPerson">+</paper-button>
+          </div>
+        </form>
       </div>
     </paper-card>
     </div>

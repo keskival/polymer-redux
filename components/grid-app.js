@@ -47,8 +47,13 @@
       this.$.store.dispatch('selectPage', page);
     }
     addPerson(event) {
-      const person = event.target.value;
-      this.$.store.dispatch('addPerson', person);
+      this.$.store.dispatch('addPerson', {
+        id: Math.random(),
+        name: this.$.addPersonName.value,
+        sex: this.$.addPersonSex.value,
+        age: this.$.addPersonAge.value
+      });
+      this.$.addPersonForm.reset();
     }
     deletePerson(event) {
       const person = event.target.value;
