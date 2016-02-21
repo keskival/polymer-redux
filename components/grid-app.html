@@ -1,0 +1,65 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="app-reducer.html">
+<link rel="import" href="app-store.html">
+<dom-module id="grid-app">
+  <template>
+    <app-reducer id="reducer" filter="[[state.filter]]"></app-reducer>
+    <app-store id="store" state="{{store.state}}" reducer="[[reducer]]"></app-store>
+    <iron-localstorage id="storage"
+      value="{{localStorage}}"
+      on-iron-localstorage-load="init"
+      on-iron-localstorage-load-empty="init">
+    </iron-localstorage>
+    <paper-card heading="Add a person" class="col-xs-12 row">
+      <div>
+        <div class="col-xs-12 col-md-4">
+          <paper-input label="Name"></paper-input>
+        </div>
+        <!-- Should be "Sex", not "Gender" -->
+        <div class="col-xs-12 col-md-4">
+          <paper-dropdown-menu label="Gender">
+            <paper-menu class="dropdown-content">
+              <paper-item>Male</paper-item>
+              <paper-item>Female</paper-item>
+              <paper-item>Other</paper-item>
+            </paper-menu>
+          </paper-dropdown-menu>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <paper-button class="col-xs-12 col-md-4" style="font-size: 24pt;">+</paper-button>
+        </div>
+      </div>
+    </paper-card>
+    </div>
+    <paper-card id="grid" class="col-xs-12 row">
+      <table class="col-xs-12 row">
+        <thead>
+          <tr><th class="sortable">Name</th><th class="sortable">Gender</th><th class="sortable">Age</th><th></th></tr>
+        </thead>
+        <tbody>
+          <template is="dom-repeat" items="[[store.state.rows]]">
+            <tr><td>[[item.name]]</td><td>[[item.sex]]</td><td>[[item.age]]</td><td>X</td></tr>
+          </template>
+        </tbody>
+      </table>
+      <div id="pager" class="col-xs-12 row">
+        <template is="dom-repeat" items="[[store.state.shownPages]]">
+          <paper-button on-tap="selectPage" value="[[item]]">[[item]]</paper-button>
+        </template>
+        <template is="dom-if" if="[[store.state.morePages]]">
+          <span>&hellip;</span>
+        </template>
+      </div>
+    </paper-card>
+  </template>
+  <script src="grid-app.js">
+  </script>
+</dom-module>

@@ -1,0 +1,26 @@
+{
+  "name": "polymer-redux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node server.js --presets es2015,stage-2 --debug=5858"
+  },
+  "private": true,
+  "author": "Tero Keski-Valkama",
+  "license": "ISC",
+  "dependencies": {
+    "babel-loader": "^6.2.3",
+    "babel-polyfill": "^6.5.0",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
+    "redux": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "redux-devtools": "^3.1.1"
+  }
+}
