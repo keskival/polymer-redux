@@ -59,10 +59,6 @@
       const person = event.target.value;
       this.$.store.dispatch('deletePerson', person);
     }
-    modifyPerson(event) {
-      const person = event.target.value;
-      this.$.store.dispatch('modifyPerson', person);
-    }
     ready() {
       this.set('store', this.$.store);
       this.set('reducer', this.$.reducer);
