@@ -20,7 +20,7 @@
     init(params) {
       console.log(params);
       const names = [
-        'Tero', 'Liisa', 'Lumi', 'Syksy', 'Harald'
+        'Korsto', 'Liisa', 'Lumi', 'Syksy', 'Harald'
       ];
       if (this.localStorage) {
         this.$.store.dispatch('init', this.localStorage);
@@ -34,21 +34,12 @@
             sex: (Math.random() > 0.5 ? 'Male' : 'Female')
           });
         }
-        const peoplePerPage = 10;
-        const maxPages = 6;
-        const pages = [];
-        const numPages = Math.ceil(people.length / peoplePerPage);
-        for (let i=0; i<numPages; i++) {
-          pages.push(i+1);
-        }
-        let morePages = false;
-        if (numPages > maxPages) {
-          morePages = true;
-        }
-        this.$.store.dispatch('init', {people: people, page: 1,
-          rows: people.slice(0, peoplePerPage),
-          shownPages: pages.slice(0, maxPages), pages: pages,
-          morePages: morePages});
+        this.$.store.dispatch('init', {
+          people: people,
+          grid: {
+            page: 1
+          }
+        });
       }
     }
     selectPage(event) {

@@ -11,7 +11,7 @@
 <link rel="import" href="app-store.html">
 <dom-module id="grid-app">
   <template>
-    <app-reducer id="reducer" filter="[[state.filter]]"></app-reducer>
+    <app-reducer id="reducer" filter="[[state.filter]]" store="[[store]]"></app-reducer>
     <app-store id="store" state="{{store.state}}" reducer="[[reducer]]"></app-store>
     <iron-localstorage id="storage"
       value="{{localStorage}}"
@@ -42,19 +42,22 @@
     <paper-card id="grid" class="col-xs-12 row">
       <table class="col-xs-12 row">
         <thead>
-          <tr><th class="sortable">Name</th><th class="sortable">Gender</th><th class="sortable">Age</th><th></th></tr>
+          <tr><th class="sortable">Name</th><th class="sortable">Gender</th><th class="sortable">Age</th><th>&nbsp;</th></tr>
         </thead>
         <tbody>
-          <template is="dom-repeat" items="[[store.state.rows]]">
-            <tr><td>[[item.name]]</td><td>[[item.sex]]</td><td>[[item.age]]</td><td>X</td></tr>
+          <template is="dom-repeat" items="[[store.state.grid.rows]]">
+            <tr><td>[[item.name]]</td><td>[[item.sex]]</td><td>[[item.age]]</td><td><paper-button value="[[item.id]]" on-tap="deletePerson">X</paper-button></td></tr>
           </template>
         </tbody>
       </table>
       <div id="pager" class="col-xs-12 row">
-        <template is="dom-repeat" items="[[store.state.shownPages]]">
+        <template is="dom-if" if="[[store.state.grid.prevPages]]">
+          <span>&hellip;</span>
+        </template>
+        <template is="dom-repeat" items="[[store.state.grid.pages]]">
           <paper-button on-tap="selectPage" value="[[item]]">[[item]]</paper-button>
         </template>
-        <template is="dom-if" if="[[store.state.morePages]]">
+        <template is="dom-if" if="[[store.state.grid.morePages]]">
           <span>&hellip;</span>
         </template>
       </div>
