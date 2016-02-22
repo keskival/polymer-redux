@@ -33,11 +33,13 @@
     beforeRegister() {
       this.is = 'app-reducer';
     }
-    reduce(state, action, data) {
+    reduce(state, action) {
+      const type = action.type,
+        data = action.data;
       for( let i = 0; i < this.children.length; i++) {
-        state = this.children[i].transform(state, action, data);
+        state = this.children[i].transform(state, type, data);
       };
-      switch (action) {
+      switch (type) {
         case 'init':
           console.log(JSON.stringify(data));
           return updateGridState(

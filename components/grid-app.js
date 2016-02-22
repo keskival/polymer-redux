@@ -18,7 +18,6 @@
       this.localStorage = this.store.state;
     }
     init(params) {
-      console.log(params);
       const names = [
         'Korsto', 'Liisa', 'Lumi', 'Syksy', 'Harald'
       ];

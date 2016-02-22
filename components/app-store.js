@@ -13,19 +13,21 @@
         reducer: {
           notify: true,
           readonly: true,
-          type: Object
+          type: Object,
+          observer: 'setReducer'
         }
       };
     }
-    ready() {
+    setReducer() {
       if (!appStore) {
-        appStore = this;
+        appStore = Redux.createStore(this.reducer.reduce.bind(this.reducer));
+        appStore.subscribe(() => {
+          this.state = appStore.getState();
+        });
       }
     }
     dispatch(action, data) {
-      let newState = appStore.reducer.reduce(appStore.state, action, data);
-      appStore.state = newState;
-      this.state = appStore.state;
+      appStore.dispatch({type: action, data});
     }
   }
   Polymer(AppStore);
