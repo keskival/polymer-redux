@@ -24,13 +24,12 @@
           <div class="col-xs-12 col-md-3">
             <paper-input label="Name" id="addPersonName" minlength="1" required></paper-input>
           </div>
-          <!-- Should be "Sex", not "Gender" -->
           <div class="col-xs-12 col-md-3">
-            <paper-dropdown-menu label="Gender" id="addPersonSex" required>
+            <paper-dropdown-menu label="Sex" id="addPersonSex" required>
               <paper-menu class="dropdown-content">
-                <paper-item>Male</paper-item>
-                <paper-item>Female</paper-item>
-                <paper-item>Other / Don't want to answer</paper-item>
+                <template is="dom-repeat" items="[[sexes]]">
+                  <paper-item>[[item]]</paper-item>
+                </template>
               </paper-menu>
             </paper-dropdown-menu>
           </div>

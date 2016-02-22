@@ -8,6 +8,14 @@
           notify: true,
           readonly: true,
           type: Object
+        },
+        sexes: {
+          type: Array,
+          value: [
+            'Male',
+            'Female',
+            "Other / Don't want to answer"
+          ]
         }
       };
       this.observers = [
@@ -18,19 +26,19 @@
       this.localStorage = this.store.state;
     }
     init(params) {
-      const names = [
-        'Korsto', 'Liisa', 'Lumi', 'Syksy', 'Harald'
-      ];
       if (this.localStorage) {
         this.$.store.dispatch('init', this.localStorage);
       } else {
+        const names = [
+          'Korsto', 'Liisa', 'Lumi', 'Syksy', 'Harald'
+        ];
         const people = [];
         for (let i=0; i<100; i++) {
           people.push({
             id: i,
             name: names[Math.floor(Math.random() * 5)],
             age: (14 + Math.floor(Math.random() * 40)),
-            sex: (Math.random() > 0.5 ? 'Male' : 'Female')
+            sex: this.sexes[Math.floor(Math.random() * 3)]
           });
         }
         this.$.store.dispatch('init', {
