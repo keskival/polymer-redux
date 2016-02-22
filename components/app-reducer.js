@@ -8,7 +8,7 @@
     updateGridState(state) {
       let morePages = false,
         prevPages = false;
-      const peoplePerPage = 20;
+      const peoplePerPage = 10;
       const numPages = Math.ceil(state.people.length / peoplePerPage);
       const pages = [];
       const from = Math.max(1, state.grid.page - 3);
