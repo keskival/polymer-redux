@@ -11,12 +11,12 @@
 <link rel="import" href="app-store.html">
 <dom-module id="grid-app">
   <template>
-    <app-reducer id="reducer" filter="[[state.filter]]" store="[[store]]"></app-reducer>
+    <app-reducer id="reducer" store="[[store]]"></app-reducer>
     <app-store id="store" state="{{store.state}}" reducer="[[reducer]]"></app-store>
     <iron-localstorage id="storage"
       value="{{localStorage}}"
-      on-iron-localstorage-load="init"
-      on-iron-localstorage-load-empty="init">
+      on-iron-localstorage-load="localStorageLoaded"
+      on-iron-localstorage-load-empty="localStorageLoaded">
     </iron-localstorage>
     <paper-card heading="Add a person" class="col-xs-12 row">
       <div>

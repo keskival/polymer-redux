@@ -23,12 +23,16 @@
       ];
     }
     onStateChanged() {
+      // Saving the state into local storage always when it changes.
       this.localStorage = this.store.state;
     }
-    init(params) {
+    localStorageLoaded(params) {
       if (this.localStorage) {
-        this.$.store.dispatch('init', this.localStorage);
+        this.store.dispatch('init', this.localStorage);
+        this.store.dispatch('refreshGrid');
       } else {
+        // If the local storage is empty, we will
+        // initialize some random content.
         const names = [
           'Korsto', 'Liisa', 'Lumi', 'Syksy', 'Harald'
         ];
@@ -41,30 +45,34 @@
             sex: this.sexes[Math.floor(Math.random() * 3)]
           });
         }
-        this.$.store.dispatch('init', {
+        this.store.dispatch('init', {
           people: people,
           grid: {
             page: 1
           }
         });
+        this.store.dispatch('refreshGrid');
       }
     }
     selectPage(event) {
       const page = event.target.value;
-      this.$.store.dispatch('selectPage', page);
+      this.store.dispatch('selectPage', page);
+      this.store.dispatch('refreshGrid');
     }
     addPerson(event) {
-      this.$.store.dispatch('addPerson', {
+      this.store.dispatch('addPerson', {
         id: Math.random(),
         name: this.$.addPersonName.value,
         sex: this.$.addPersonSex.value,
         age: this.$.addPersonAge.value
       });
+      this.store.dispatch('refreshGrid');
       this.$.addPersonForm.reset();
     }
     deletePerson(event) {
       const person = event.target.value;
-      this.$.store.dispatch('deletePerson', person);
+      this.store.dispatch('deletePerson', person);
+      this.store.dispatch('refreshGrid');
     }
     ready() {
       this.set('store', this.$.store);
