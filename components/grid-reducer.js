@@ -23,7 +23,7 @@
         prevPages = false;
 
       for (let i=from; i<=to; i++) {
-        pages.push(i);
+        pages.push({page: i, pagerClass: (state.grid.page == i)?"selected":""});
       }
       if (to < numPages) {
         morePages = true;

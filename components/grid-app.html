@@ -59,7 +59,7 @@
           <span>&hellip;</span>
         </template>
         <template is="dom-repeat" items="[[store.state.grid.pages]]">
-          <paper-button on-tap="selectPage" value="[[item]]">[[item]]</paper-button>
+          <paper-button on-tap="selectPage" value="[[item.page]]" class$="[[item.pagerClass]]">[[item.page]]</paper-button>
         </template>
         <template is="dom-if" if="[[store.state.grid.morePages]]">
           <span>&hellip;</span>
