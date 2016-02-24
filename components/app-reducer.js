@@ -15,7 +15,7 @@
     reduce(state, action) {
       const type = action.type,
         data = action.data;
-      for( let i = 0; i < this.children.length; i++) {
+      for (let i = 0; i < this.children.length; i++) {
         state = this.children[i].reduce(state, action);
       };
       switch (type) {
@@ -27,7 +27,8 @@
             people: [
               ...state.people,
               data
-            ]});
+            ]
+          });
         case 'selectPage':
           return Object.assign({}, state, {
             grid: {
