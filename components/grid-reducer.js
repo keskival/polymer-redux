@@ -47,10 +47,9 @@
     }
 
     reduce(state, action) {
-      const type = action.type,
-        data = action.data;
+      const type = action.type;
       for( let i = 0; i < this.children.length; i++) {
-        state = this.children[i].reduce(state, type, data);
+        state = this.children[i].reduce(state, action);
       };
       switch (type) {
         case 'refreshGrid':
