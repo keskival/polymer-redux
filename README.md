@@ -11,6 +11,9 @@ a) One Webpack plug-in I tested required this separation, and
 b) It is demonstrated as a warning example of how bad it looks when
    this is done.
 
+As mentioned, I tested Webpack with Polymer also here, and got to the conclusion
+that it's not a good idea to mix Webpack with Polymer.
+
 # Usage
 
 `npm install`
