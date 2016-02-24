@@ -18,6 +18,9 @@
       const from = Math.max(1, state.grid.page - 3);
       const to = Math.min(numPages, state.grid.page + 3);
       const pages = [];
+      if (state.grid.page > numPages) {
+        state.grid.page = numPages;
+      }
 
       let morePages = false,
         prevPages = false;
@@ -37,7 +40,7 @@
         grid: Object.assign({}, state.grid, {
           morePages: morePages,
           prevPages: prevPages,
-          rows: state.people.slice(first, last + 1),
+          rows: state.people.slice(first, last),
           pages: pages
         })
       });
